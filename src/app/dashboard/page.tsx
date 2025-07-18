@@ -1,6 +1,6 @@
 // src/app/dashboard/page.tsx
 'use client';
-
+export const dynamic = 'force-dynamic';
 import { useEffect, useState } from 'react';
 import { TotalCard } from '@/components/total-card';
 import {

@@ -3,6 +3,7 @@ import { getFinancialSummary, getBudgetSummary } from '@/lib/utils/calculations'
 import ExpenseTable from './expense-table';
 import ExpenseForm from './expense-form';
 import { TotalCard } from '@/components/total-card';
+export const dynamic = 'force-dynamic';
 
 export default async function ExpensesPage() {
   const { totalExpenses, totalIncomes } = await getFinancialSummary();
