@@ -1,12 +1,18 @@
 // src/lib/ai/assistant.ts
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { Expense, Income } from "@/lib/db/models";
+import "@/lib/db/index"; // Importar para inicializar la conexión
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export async function askAI(question: string) {
   try {
+    // Verificar si la base de datos está disponible
+    if (!process.env.DATABASE_URL) {
+      return 'La base de datos no está configurada. Por favor, configura las variables de entorno.';
+    }
+
     // Obtener datos reales
     const [expenses, incomes] = await Promise.all([
       Expense.findAll({ order: [['date', 'DESC']], limit: 20 }),
