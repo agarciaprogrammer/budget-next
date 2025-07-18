@@ -1,0 +1,36 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: budget-tracker
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  web:
+    build: .
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/budget-tracker
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-mock-key}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./.env.local:/app/.env.local:ro
+
+volumes:
+  postgres_data:
