@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "db:sync": "dotenv -e .env.local tsx src/lib/db/sync.ts",
+    "db:sync": "tsx src/lib/db/sync.ts",
     "db:seed": "dotenv -e .env.local tsx src/lib/db/seed.ts",
     "docker:build": "docker-compose up --build",
     "docker:up": "docker-compose up",
@@ -40,6 +40,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.4.1",
     "tailwindcss": "^4",
+    "tsx": "^4.20.3",
     "typescript": "^5"
   }
 }
