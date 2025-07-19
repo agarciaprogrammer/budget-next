@@ -12,7 +12,7 @@ export default function Home() {
           <p className="text-gray-400">Registra y categoriza tus gastos</p>
         </div>
         <div className="bg-gray-800 p-6 rounded-lg">
-          <h3 className="text-xl font-semibold mb-2">💰 Ingresos</h3>
+          <h3 className="text-xl font-semibold mb-2">💰 Ingreso</h3>
           <p className="text-gray-400">Controla todas tus fuentes de ingreso</p>
         </div>
         <div className="bg-gray-800 p-6 rounded-lg">
